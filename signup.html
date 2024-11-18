@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sign Up - welcome</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body id="body">
+
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+      <div id="logo" class="pull-left">
+        <h1><a href="#body" class="scrollto">wel<span>come</span></a></h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sign Up Section -->
+  <section id="signup" class="wow fadeInUp">
+    <div class="container">
+      <div class="section-header">
+        <h2>Sign Up</h2>
+        <p>Create an account</p>
+      </div>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <form action="process-signup.php" method="post" class="signup-form">
+            <div class="form-group">
+              <label for="name">First Name</label>
+              <input type="text" class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+              <label for="surname">Surname</label>
+              <input type="text" class="form-control" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+              <label for="governorate">Governorate</label>
+              <select class="form-control" id="governorate" name="governorate" required>
+                <option value="">Select your governorate</option>
+                <option value="Ariana">Ariana</option>
+                <option value="Béja">Béja</option>
+                <option value="Ben Arous">Ben Arous</option>
+                <option value="Bizerte">Bizerte</option>
+                <option value="Gabès">Gabès</option>
+                <option value="Gafsa">Gafsa</option>
+                <option value="Jendouba">Jendouba</option>
+                <option value="Kairouan">Kairouan</option>
+                <option value="Kasserine">Kasserine</option>
+                <option value="Kébili">Kébili</option>
+                <option value="Le Kef">Le Kef</option>
+                <option value="Mahdia">Mahdia</option>
+                <option value="La Manouba">La Manouba</option>
+                <option value="Médenine">Médenine</option>
+                <option value="Monastir">Monastir</option>
+                <option value="Nabeul">Nabeul</option>
+                <option value="Sfax">Sfax</option>
+                <option value="Sidi Bouzid">Sidi Bouzid</option>
+                <option value="Siliana">Siliana</option>
+                <option value="Sousse">Sousse</option>
+                <option value="Tataouine">Tataouine</option>
+                <option value="Tozeur">Tozeur</option>
+                <option value="Tunis">Tunis</option>
+                <option value="Zaghouan">Zaghouan</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="confirm-password">Confirm Password</label>
+              <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+            </div>
+            <a href="signin.html" class="btn btn-primary btn-block">Sign Up</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
