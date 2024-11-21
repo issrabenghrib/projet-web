@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Farm to future</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+    Theme Name: Reveal
+    Theme URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+
+  
+    <!-- ... autres liens ... -->
+    <link href="css/weather.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<body id="body">
+  <style>
+    body {
+        background-color: #006400; /* Dark green color */
+        color: white; /* Optional: changes text color to white for better contrast */
+    }
+  </style>
+  <style>
+    /* Apply a background image to the body */
+    body {
+        background-image: url('background.jpg'); /* Replace with the path to your image */
+        background-size: cover; /* Cover the entire viewport */
+        background-position: center center; /* Center the image */
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: white; /* Set text color to white for contrast */
+    }
+
+    /* Add some content to demonstrate scrolling */
+    .content {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        min-height: 100vh; /* Ensure there's enough content to scroll */
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 3em;
+        margin-top: 50px;
+    }
+
+    p {
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+</style>
+
+  <!--==========================
+    Top Bar
+  ============================-->
+  <section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+      <div class="contact-info float-left">
+        <i class="fa fa-envelope-o"></i> <a href="mailto:contact@example.com">contact@farmtofuture.tn</a>
+        <i class="fa fa-phone"></i> +216 75 000 500
+      </div>
+      <div class="social-links float-right">
+        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#body" class="scrollto">farm<span>future</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#body">Home</a></li>
+          <li><a href="#about">Sign out</a></li>
+          <li><a href="#services">About us</a></li>
+          <li><a href="#portfolio">Our services</a></li>
+          <li><a href="#team">Team</a></li>
+          <li class="menu-has-children"><a href="">My Profile</a>
+            <ul>
+              <li><a href="#">Check my fields</a></li>
+              <li><a href="#">Alerts</a></li>
+              <li><a href="#">Recevoir alerte</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Recevoir alerte</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+ 
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="wow fadeInUp">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="weather-title">
+                    <i class="fas fa-cloud-sun"></i>
+                    Prévisions Météo
+                </h2>
+                <p class="weather-subtitle">Explorez les conditions météorologiques pour la date de votre choix</p>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="weather-card">
+                        <div class="weather-card-header">
+                            <div class="date-selector">
+                                <div class="date-input-group">
+                                    <label for="weatherDate">Choisissez une date</label>
+                                    <div class="date-input-wrapper">
+                                        <i class="far fa-calendar-alt"></i>
+                                        <input 
+                                            type="date" 
+                                            id="weatherDate" 
+                                            name="weatherDate"
+                                            required
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="weather-date">
+                                <i class="far fa-calendar-alt"></i>
+                                Prévisions disponibles
+                            </span>
+                        </div>
+                        
+                        <form action="" method="post" class="weather-form">
+                            <div class="weather-options">
+                                <div class="weather-option">
+                                    <input type="checkbox" id="temperature" name="weather_options">
+                                    <label for="temperature">
+                                        <div class="option-icon">
+                                            <i class="fas fa-thermometer-half"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <span class="option-title">Température</span>
+                                            <span class="option-desc">Prévisions de température</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="weather-option">
+                                    <input type="checkbox" id="humidity" name="weather_options">
+                                    <label for="humidity">
+                                        <div class="option-icon">
+                                            <i class="fas fa-tint"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <span class="option-title">Humidité</span>
+                                            <span class="option-desc">Niveau d'humidité dans l'air</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="weather-option">
+                                    <input type="checkbox" id="rain" name="weather_options">
+                                    <label for="rain">
+                                        <div class="option-icon">
+                                            <i class="fas fa-cloud-rain"></i>
+                                        </div>
+                                        <div class="option-content">
+                                            <span class="option-title">Précipitations</span>
+                                            <span class="option-desc">Probabilité de pluie</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+    
+                            <button type="submit" class="weather-button">
+                                <span>Afficher les prévisions</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </form>
+    
+                        <div id="weather-results" class="weather-results">
+                            <!-- Results will be displayed here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- #contact --><!-- #contact -->
+
+  </main>
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Farm to future</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Reveal
+        -->
+        <a href="https://bootstrapmade.com/">Free Bootstrap Templates</a> by BootstrapMade
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/superfish/hoverIntent.js"></script>
+  <script src="lib/superfish/superfish.min.js"></script>
+  <script src="lib/wow/wow.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/magnific-popup/magnific-popup.min.js"></script>
+  <script src="lib/sticky/sticky.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+  <section id="contact" class="wow fadeInUp"></section>
+    <!-- Votre code HTML existant -->
+     
+</section>
+
+<!-- Ajoutez ces lignes à la fin, juste avant </body> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/weather.js"></script>
+
+</body>
+</html>
+</body>
+</html>
