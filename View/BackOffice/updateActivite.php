@@ -129,7 +129,7 @@ if (
         $a = $ActiviteController->showActivite($_POST['id']);
        
     ?>
-                                            <form id="addActiviteForm" action="" method="POST">
+                                            <form id="addactiviteForm" action="" method="POST">
                                             <label for="id">ID Activite:</label><br>
                                             <input class="form-control form-control-user" type="text" id="id" name="id" readonly value="<?php echo $_POST['id'] ?>">
                                             <label for="methode">Methode:</label><br>
@@ -141,9 +141,10 @@ if (
                                                 </select>
                                              
                                         
-                                                <label for="quantite">Quantite:</label><br>
-                                                <input class="form-control form-control-user" type="text" id="quantite" name="quantite" >
-                                                <span id="quantite_error"></span><br>
+                                                <label for="quantite">Quantite en mL:</label>
+                                                <input type="text" id="quantite" name="quantite" />
+                                                <span id="feedback" style="margin-left: 10px; font-weight: bold;"></span>
+                                                <br />
                                         
                                         
                                                 <div class="form-group">
@@ -199,7 +200,31 @@ if (
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        <script src="js/addActivite.js"></script>
+        <script>
+    document.getElementById('quantite').addEventListener('input', function () {
+        const quantite = document.getElementById('quantite').value.trim();
+        const feedback = document.getElementById('feedback');
+        const quantiteInt = parseInt(quantite, 10);
+
+        if (isNaN(quantiteInt) || quantiteInt <= 10) {
+            feedback.textContent = 'La quantité doit être un entier strictement supérieur à 10.';
+            feedback.style.color = 'red';
+        } else {
+            feedback.textContent = 'Quantité valide!';
+            feedback.style.color = 'green';
+        }
+    });
+
+    document.getElementById('addactiviteForm').addEventListener('submit', function (e) {
+        const quantite = document.getElementById('quantite').value.trim();
+        const quantiteInt = parseInt(quantite, 10);
+
+        if (isNaN(quantiteInt) || quantiteInt <= 10) {
+            alert('Veuillez entrer une quantité valide (entier strictement supérieur à 10).');
+            e.preventDefault();
+        }
+    });
+</script>
     
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
