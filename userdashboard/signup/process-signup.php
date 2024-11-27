@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             ]);
             
             // Rediriger vers la page d'accueil après une inscription réussie
-            header("Location: /userdashboard/welcomepage/welcomepage.html");
+            header("Location: /userdashboard/signin/signin.html");
             exit(); // Assurez-vous d'arrêter l'exécution du script après la redirection
         } catch (PDOException $e) {
             // Gérer les erreurs SQL

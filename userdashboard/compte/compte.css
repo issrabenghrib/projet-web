@@ -1,0 +1,125 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background:#ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120vh;
+  color: #333;
+}
+
+/* Profile Edit Container */
+#profile-edit {
+  width: 100%;
+  max-width: 400px;  /* Reduced the width */
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 30px 25px;  /* Reduced padding for a more compact form */
+  text-align: center;
+}
+
+.form-header h2 {
+  font-size: 24px;  /* Reduced font size */
+  color: #0c2e8a;
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  font-size: 14px;  /* Reduced font size */
+  color: #9fffe2;
+  margin-bottom: 20px;
+}
+
+.profile-form .form-group {
+  margin-bottom: 15px;  /* Reduced margin */
+  text-align: left;
+}
+
+.profile-form .form-group label {
+  font-size: 12px;  /* Reduced font size */
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;  /* Reduced margin */
+  display: block;
+}
+
+.profile-form .form-group input {
+  width: 100%;
+  padding: 10px 12px;  /* Reduced padding */
+  font-size: 14px;  /* Reduced font size */
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.profile-form .form-group input:focus {
+  border-color: #50d8af;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(80, 216, 175, 0.2);
+}
+
+/* Profile Picture Preview */
+.photo-preview {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.photo-preview img {
+  width: 70px;  /* Reduced preview size */
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;  /* Circular shape */
+  border: 2px solid #50d8af;
+}
+
+/* Submit Button */
+.btn-update {
+  display: block;
+  width: 100%;
+  padding: 10px 0;  /* Reduced padding */
+  font-size: 14px;  /* Reduced font size */
+  font-weight: bold;
+  color: #ffffff;
+  background: #50d8af;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-update:hover {
+  background: linear-gradient #50d8af;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-update:active {
+  transform: translateY(2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  #profile-edit {
+      padding: 25px 15px;  /* Adjusted padding for mobile */
+  }
+
+  .photo-preview img {
+      width: 50px;  /* Smaller size for mobile */
+      height: 50px;
+  }
+
+  .btn-update {
+      font-size: 12px;  /* Reduced font size */
+      padding: 8px 0;  /* Reduced padding */
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="compte.css">
+</head>
+<body>
+  <div id="profile-edit">
+    <div class="form-header">
+      <h2>Edit Profile</h2>
+      <p>Update your information below</p>
+    </div>
+    <form class="profile-form" action="compte.php" method="post" enctype="multipart/form-data">
+      <!-- Profile Picture -->
+      <div class="form-group photo-upload">
+        <label for="profile-photo">Profile Picture</label>
+        <div class="photo-preview">
+          <img id="photo-preview" src="uploads/default-photo.jpg" alt="Profile Picture" style="width: 100px; height: 100px;">
+        </div>
+        <input type="file" id="profile-photo" name="profile_photo" accept="image/*" onchange="previewPhoto(event)">
+      </div>
+
+      <!-- Name -->
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+      </div>
+
+      <!-- Surname -->
+      <div class="form-group">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" placeholder="Enter your surname" required>
+      </div>
+
+      <!-- Governorate -->
+      <div class="form-group">
+        <label for="governorate">Governorate</label>
+        <input type="text" id="governorate" name="governorate" placeholder="Enter your governorate" required>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">New Password (Optional)</label>
+        <input type="password" id="password" name="password" placeholder="Enter your new password">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-update">Update Profile</button>
+    </form>
+  </div>
+
+  <script>
+    // JavaScript to preview selected photo
+    function previewPhoto(event) {
+      const reader = new FileReader();
+      reader.onload = function () {
+        const preview = document.getElementById('photo-preview');
+        preview.src = reader.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  </script>
+</body>
+</html>
