@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener("submit", validateForm);
 
     // Validate each field as the user types
-    nomelement.addEventListener("keyup", validateNom);
-    prenomelement.addEventListener("keyup", validatePrenom);
-    ageelement.addEventListener("keyup", validateAge);
+    nomelement.addEventListener("keydown", validateNom);
+    prenomelement.addEventListener("keydown", validatePrenom);
+    ageelement.addEventListener("keydown", validateAge);
 
 });

@@ -1,24 +1,31 @@
 <?php
 
 include '../../controller/OuvrierController.php';
-
-
+include '../../controller/TravailController.php';
+$TravailC = new TravailController();
+$listTravail = $TravailC->listTravail();
 $error = "";
-
 $o= null;
 // create an instance of the controller
 $oController = new OuvrierController();
 
 
 if (
-    isset($_POST["nom"])  && $_POST["prenom"] && $_POST["age"]
+    isset($_POST["typetravail"]) &&
+    isset($_POST["nom"]) &&
+    isset($_POST["prenom"]) &&
+    isset($_POST["age"])
 ) {
     if (
-        !empty($_POST["nom"])  && !empty($_POST["prenom"]) && !empty($_POST["age"])
+        !empty($_POST["typetravail"]) &&
+        !empty($_POST["nom"]) &&
+        !empty($_POST["prenom"]) &&
+        !empty($_POST["age"])
     
     ) {
         $o = new Ouvrier(
             null,
+            $_POST["typetravail"],
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['age']
@@ -126,10 +133,11 @@ if (
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                         <?php
-    if (isset($_POST['id'])) {
-        $o = $oController->showOuvrier($_POST['id']);
-       
-    ?>
+                                        if (isset($_POST['id'])) {
+                                            $o = $oController->showOuvrier($_POST['id']);
+                                            $t = $TravailC->showTravail($_POST['id_travail'])
+                                        
+                                        ?>
                                             <form id="addOuvrierForm" action="" method="POST">
                                             <label for="id">ID Ouvrier:</label><br>
                                             <input class="form-control form-control-user" type="text" id="id" name="id" readonly value="<?php echo $_POST['id'] ?>">
@@ -145,7 +153,15 @@ if (
                                                 <label for="age">Age:</label><br>
                                                 <input class="form-control form-control-user" type="text" id="age" name="age" value="<?php echo $o['age'] ?>" >
                                                 <span id="age_error"></span><br>
-                                        
+                                                
+                                                <label for="typetravail">Type de Travail:</label><br>
+                                                <select class="form-control form-control-user" name="typetravail">
+                                                <?php foreach($listTravail as $t){
+                                                ?>
+                                                <option value="<?php echo $t["id"]; ?>"><?php echo $t["typetravail"]; ?></option>
+                                                <?php }
+                                                ?>
+                                                </select><br>
                                                 
                                            <br>
                                         

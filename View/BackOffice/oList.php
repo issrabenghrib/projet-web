@@ -1,7 +1,7 @@
 <?php
 include '../../controller/OuvrierController.php';
 $OuvrierC = new OuvrierController();
-$listOuvrier = $OuvrierC->listOuvrier();
+$listOuvrier = $OuvrierC->TravailOuvrier();
 
 include '../../controller/TravailController.php';
 $TravailC = new TravailController();
@@ -85,6 +85,7 @@ $listTravail = $TravailC->listTravail();
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th>ID</th>
+                                                <th>Type de Travail effectué</th>
                                                 <th>Nom</th>
                                                 <th>Prenom</th>
                                                 <th>Age</th>
@@ -93,6 +94,7 @@ $listTravail = $TravailC->listTravail();
                                             <?php foreach ($listOuvrier as $o) { ?>
                                                 <tr>
                                                     <td><?php echo $o['id'] ?></td>
+                                                    <td><?php echo $o['typetravail'] ?></td>
                                                     <td><?php echo $o['nom'] ?></td>
                                                     <td><?php echo $o['prenom'] ?></td>
                                                     <td><?php echo $o['age'] ?></td>
@@ -100,6 +102,7 @@ $listTravail = $TravailC->listTravail();
                                                         <form method="POST" action="updateOuvrier.php">
                                                             <input type="submit" name="update" value="Update">
                                                             <input type="hidden" value=<?PHP echo $o['id']; ?> name="id">
+                                                            <input type="hidden" value=<?PHP echo $o['id_travail']; ?> name="id_travail">
                                                         </form>
                                                     </td>
                                                     <td>

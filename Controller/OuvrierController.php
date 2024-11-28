@@ -33,15 +33,17 @@ class OuvrierController
     function addOuvrier($o)
     {   var_dump($o);
         $sql = "INSERT INTO ouvrier
-        VALUES (NULL, :nom,:prenom, :age)";
+        VALUES (NULL,:id_travail, :nom,:prenom, :age)";
         $db = config::getConnexion();
         try {
             
             $query = $db->prepare($sql);
             $query->execute([
+                'id_travail'=> $o->getIdTravail(),
                 'nom' => $o->getNom(),
                 'prenom' => $o->getPrenom(),
                 'age' => $o->getAge()
+                
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -56,17 +58,21 @@ class OuvrierController
 
         $query = $db->prepare(
             'UPDATE ouvrier SET 
+                id_travail =:id_travail,
                 nom = :nom,
                 prenom = :prenom,
                 age = :age
+                
             WHERE id = :id'
         );
 
         $query->execute([
             'id' => $id,
+            'id_travail' => $o->getIdTravail(),
             'nom' => $o->getNom(),
             'prenom' => $o->getPrenom(),
             'age' => $o->getAge()
+            
         ]);
 
         echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -88,6 +94,17 @@ class OuvrierController
             return $o;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
+        }
+    }
+    public function TravailOuvrier()
+    {
+        $sql = "SELECT o.*,t.typetravail as typetravail FROM ouvrier o join travail t on o.id_travail=t.id";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
         }
     }
 }

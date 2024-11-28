@@ -1,21 +1,23 @@
 <?php
 
 include '../../controller/OuvrierController.php';
-
-
+include '../../controller/TravailController.php';
+$TravailC = new TravailController();
+$listTravail = $TravailC->listTravail();
 $error = "";
 $o= null;
 // create an instance of the controller
 
 
 if (
-    isset($_POST["nom"])  && $_POST["prenom"] && $_POST["age"]
+    isset($_POST["id_travail"] , $_POST["nom"]  , $_POST["prenom"] , $_POST["age"])
 ) 
 {
     
         
         $o = new Ouvrier(
             null,
+            $_POST['id_travail'],
             $_POST['nom'],
             $_POST['prenom'],
             $_POST['age']
@@ -136,6 +138,14 @@ if (
                                             <label for="age">Age:</label><br>
                                             <input class="form-control form-control-user" type="text" id="age" name="age">
                                             <span id="age_error"></span><br>
+                                            <label for="unite">Type de Travail:</label><br>
+                                            <select class="form-control form-control-user" id="id_travail" name="id_travail">
+                                                <?php foreach($listTravail as $t){
+                                                ?>
+                                                <option value="<?php echo $t["id"]; ?>"><?php echo $t["typetravail"]; ?></option>
+                                                <?php }
+                                                ?>
+                                            </select><br>
 
                                             <button type="submit" class="btn btn-primary btn-user btn-block">Add Ouvrier</button>
                                         </form>

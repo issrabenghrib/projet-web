@@ -1,6 +1,6 @@
 <?php
 include(__DIR__ . '/../config.php');
-include(__DIR__ . '/../Model/Travail.php');
+require_once(__DIR__ . '/../Model/Travail.php');
 
 class TravailController
 {
