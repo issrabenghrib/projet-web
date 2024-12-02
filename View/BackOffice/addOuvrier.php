@@ -28,7 +28,7 @@ if (
             
         
 
-       header('Location:oList.php');
+        header('Location:oList.php');
     
 }
 
@@ -138,7 +138,7 @@ if (
                                             <label for="age">Age:</label><br>
                                             <input class="form-control form-control-user" type="text" id="age" name="age">
                                             <span id="age_error"></span><br>
-                                            <label for="unite">Type de Travail:</label><br>
+                                            <label for="typetravail">Type de Travail:</label><br>
                                             <select class="form-control form-control-user" id="id_travail" name="id_travail">
                                                 <?php foreach($listTravail as $t){
                                                 ?>

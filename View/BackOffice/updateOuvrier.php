@@ -135,7 +135,7 @@ if (
                                         <?php
                                         if (isset($_POST['id'])) {
                                             $o = $oController->showOuvrier($_POST['id']);
-                                            $t = $TravailC->showTravail($_POST['id_travail'])
+                                            $t = $TravailC->showTravail($_POST['id_travail']);
                                         
                                         ?>
                                             <form id="addOuvrierForm" action="" method="POST">
@@ -156,6 +156,7 @@ if (
                                                 
                                                 <label for="typetravail">Type de Travail:</label><br>
                                                 <select class="form-control form-control-user" name="typetravail">
+                                                    <option value="typetravail"><?php echo $t["typetravail"]; ?></option>
                                                 <?php foreach($listTravail as $t){
                                                 ?>
                                                 <option value="<?php echo $t["id"]; ?>"><?php echo $t["typetravail"]; ?></option>
@@ -175,8 +176,8 @@ if (
                                                 >Add Ouvrier</button> -->
                                             </form>
                                             <?php
-    }
-    ?>
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
