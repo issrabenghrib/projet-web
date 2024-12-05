@@ -1,7 +1,41 @@
 <?php
-include '../../controller/DateController.php';
-$DateC = new DateController();
-$list = $DateC->listDate();
+
+include '../../controller/PlanController.php';
+include '../../controller/ActiviteController.php';
+$ActiviteC = new ActiviteController();
+$listActivite = $ActiviteC->listActivite();
+
+$error = "";
+$p= null;
+// create an instance of the controller
+
+
+if (
+    isset($_POST["id_activite"] , $_POST["titre"]  , $_POST["datep"] , $_POST["messagep"])
+) 
+{
+    
+        $p = new Plan(
+            null,
+            $_POST['id_activite'],
+            $_POST['titre'],
+            new Datetime($_POST['datep']),
+            $_POST['messagep']
+            
+        );
+        $plist = new PlanController();
+        $plist-> addPlan($p);
+        
+            
+        
+
+       header('Location:pList.php');
+    
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +47,7 @@ $list = $DateC->listDate();
         <meta name="description" content="">
         <meta name="author" content="">
     
-        <title> Date List - Dashboard</title>
+        title>Add  Plan - Dashboard</titre>
     
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,13 +78,12 @@ $list = $DateC->listDate();
     
                 <!-- Nav Item - Dashboard -->
                 
-                <li class="nav-item active">
-                    <a class="nav-link" href="addDate.php">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Add Date</span></a>
-                </li>
     
-             
+                <li class="nav-item active">
+                    <a class="nav-link" href="pList.php">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span> Plan List</span></a>
+                </li>
     
     
             </ul>
@@ -82,7 +115,7 @@ $list = $DateC->listDate();
     
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800"> Date List</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Add a  Plan</h1>
                                   </div>
     
                         <!-- Content Row -->
@@ -93,40 +126,37 @@ $list = $DateC->listDate();
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
-                                        <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                     
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Jour</th>
-                                                        <th>Mois</th>
-                                                        <th>Annee</th>
-                                                        <th colspan="2">Actions</th>
-                                                    </tr>
-                                              
-                                                <?php
-        foreach ($list as $d) {
-        ?> <tr>
-         <td><?= $d['id']; ?></td>
-            <td><?= $d['jour']; ?></td>
-            <td><?= $d['mois']; ?></td>
-            <td><?= $d['annee']; ?></td>
-            <td>
-                <form method="POST" action="updateDate.php">
-                    <input type="submit" name="update" value="Update">
-                    <input type="hidden" value=<?PHP echo $d['id']; ?> name="id">
-                </form>
-            </td>
-            <td>
-                <a href="deleteDate.php?id=<?php echo $d['id']; ?>">Delete</a>
-            </td>
-            </tr>
-        <?php
-    }
-    ?>
-                                        </table>
-
+                                            
+                                            <form id="addPlanForm" action="" method="POST">
+                                                <label for="titre">Titre:</label><br>
+                                                <input class="form-control form-control-user" type="text" id="titre" name="titre" >
+                                                <span id="titre_error"></span><br>
+                                             
                                         
+                                                <label for="datep">Date du Plan:</label><br>
+                                                <input class="form-control form-control-user" type="date" id="datep" name="datep" >
+                                                <span id="datep_error"></span><br>
+                                        
+                                                <label for="messagep">Message:</label><br>
+                                                <input class="form-control form-control-user" type="text" id="messagep" name="messagep" >
+                                                <span id="messagep_error"></span><br>
+                                                <label for="methode">Methode:</label><br>
+                                                <select class="form-control form-control-user" id="id_activite" name="id_activite">
+                                                <?php foreach($listActivite as $a){
+                                                ?>
+                                                <option value="<?php echo $a["id"]; ?>"><?php echo $a["methode"]; ?></option>
+                                                <?php }
+                                                ?>
+                                            </select><br>
+
+                                           <br>
+                                        
+                                                <button type="submit" class="btn btn-primary btn-user btn-block">Add Plan</button> 
+                                                <!-- <button type="submit" 
+                                                class="btn btn-primary btn-user btn-block" 
+                                                
+                                                >Add Plan</button> -->
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +189,7 @@ $list = $DateC->listDate();
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        <script src="js/addDate.js"></script>
+        <script src="js/addPlan.js"></script>
     
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>

@@ -4,10 +4,10 @@ class Activite{
     private ?int $id;
     private ?string $methode;
     private ?float $quantite;
-    private ?bool $realisation;
+    private ?string $realisation;
     
     // Constructor
-    public function __construct(?int $id, ?string $methode, ?float $quantite, ?bool $realisation) {
+    public function __construct(?int $id, ?string $methode, ?float $quantite, ?string $realisation) {
         $this->id = $id;
         $this->methode = $methode;
         $this->quantite = $quantite;
@@ -40,11 +40,11 @@ class Activite{
         $this->quantite = $quantite;
     }
 
-    public function getRealisation(): ?bool {
+    public function getRealisation(): ?string {
         return $this->realisation;
     }
 
-    public function setRealisation(?bool $realisation): void {
+    public function setRealisation(?string $realisation): void {
         $this->realisation = $realisation;
     }
 

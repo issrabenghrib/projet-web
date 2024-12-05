@@ -1,12 +1,12 @@
 <?php
 include(__DIR__ . '/../config.php');
-require_once(__DIR__ . '/../Model/Activite.php');
+include(__DIR__ . '/../Model/Plan.php');
 
-class ActiviteController
+class PlanController
 {
-    public function listActivite()
+    public function listPlan()
     {
-        $sql = "SELECT * FROM activite";
+        $sql = "SELECT * FROM plan";
         $db = config::getConnexion();
         try {
             $liste = $db->query($sql);
@@ -16,9 +16,9 @@ class ActiviteController
         }
     }
 
-    function deleteActivite($id)
+    function deletePlan($id)
     {
-        $sql = "DELETE FROM activite WHERE id = :id";
+        $sql = "DELETE FROM plan WHERE id = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
@@ -30,43 +30,47 @@ class ActiviteController
         }
     }
 
-    function addActivite($a)
-    {   var_dump($a);
-        $sql = "INSERT INTO activite
-        VALUES (NULL, :methode,:quantite, :realisation)";
+    function addPlan($p)
+    {   var_dump($p);
+        $sql = "INSERT INTO plan
+        VALUES (NULL,:id_activite, :titre,:datep, :messagep)";
         $db = config::getConnexion();
         try {
             
             $query = $db->prepare($sql);
             $query->execute([
-                'methode' => $a->getMethode(),
-                'quantite' => $a->getQuantite(),
-                'realisation' => $a->getRealisation()
+                'id_activite'=> $p->getIdActivite(),
+                'titre' => $p->getTitre(),
+                'datep' => $p->getDatep()->format('Y-m-d'),
+                'messagep' => $p->getMessagep()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
 
-    function updateActivite($a, $id)
+    function updatePlan($p, $id)
 {
-    var_dump($a);
+    var_dump($p);
     try {
         $db = config::getConnexion();
 
         $query = $db->prepare(
-            'UPDATE activite SET 
-                methode = :methode,
-                quantite = :quantite,
-                realisation = :realisation
+            'UPDATE plan SET 
+            id_activite =:id_activite,
+                titre = :titre,
+                datep = :datep,
+                messagep = :messagep
             WHERE id = :id'
         );
 
         $query->execute([
             'id' => $id,
-            'methode' => $a->getMethode(),
-            'quantite' => $a->getQuantite(),
-            'realisation' => $a->getRealisation()
+            'id_activite' => $p->getIdActivite(),
+            'titre' => $p->getTitre(),
+            'datep' => $p->getDatep()->format('Y-m-d'),
+            'messagep' => $p->getMessagep()
+            
         ]);
 
         echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -76,32 +80,41 @@ class ActiviteController
 }
 
 
-    function showActivite($id)
+    function showPlan($id)
     {
-        $sql = "SELECT * from activite where id = $id";
+        $sql = "SELECT * from plan where id = $id";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute();
 
-            $a = $query->fetch();
-            return $a;
+            $p = $query->fetch();
+            return $p;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
-            
+        }
+    }
+    public function ActivitePlan()
+    {
+        $sql = "SELECT p.*,a.methode as methode FROM plan p join activite a on p.id_activite=a.id";
+        $db = config::getConnexion();
+        try {
+            $liste = $db->query($sql);
+            return $liste;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
         }
     }
     public function deleteRealisedPlans()
     {
         $db = config::getConnexion();
-        
         try {
             $sql = "DELETE FROM activite WHERE realisation = :realisation";
             $query = $db->prepare($sql);
             $query->execute(['realisation' => 'realise']);
-            echo "All realised plans have been deleted successfully.";
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }
     }
+
 }

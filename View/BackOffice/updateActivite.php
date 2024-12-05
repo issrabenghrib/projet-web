@@ -148,10 +148,12 @@ if (
                                         
                                         
                                                 <div class="form-group">
-                                                    <div class="custom-control custom-checkbox small">
-                                                        <input type="checkbox" class="custom-control-input" id="realisation" name="realisation">
-                                                        <label class="custom-control-label" for="realisation">Realisation
-                                                        </label>
+                                                <label for="realisation">Unite:</label><br>
+                                                <select class="form-control form-control-user" id="realisation" name="realisation" value="<?php echo $t['realisation'] ?>">
+                                                    <option value="realise">realise</option>
+                                                    <option value="en cours">en cours</option>
+                                                    <option value="pas realise">pas realise</option>
+                                                </select><br>
                                                 </div>
                                                
                                            <br>

@@ -94,6 +94,8 @@ $list = $ActiviteC->listActivite();
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                         <div class="table-responsive">
+                                        <form method="POST" action="deleteRealisedPlans.php">
+                                        <button type="submit" class="btn btn-danger">Delete All Realised Plans</button>
                                         <table class="table table-bordered">
                                      
                                                     <tr>

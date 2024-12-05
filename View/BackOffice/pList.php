@@ -1,38 +1,10 @@
 <?php
-
-include '../../controller/DateController.php';
-
-
-$error = "";
-$d= null;
-// create an instance of the controller
-
-
-if (
-    isset($_POST["jour"])  && $_POST["mois"] && $_POST["annee"]
-) 
-{
-    
-        $d = new Date(
-            null,
-            $_POST['jour'],
-            $_POST['mois'],
-            $_POST['annee']
-            
-        );
-        $dlist = new DateController();
-        $dlist-> addDate($d);
-        
-            
-        
-
-       header('Location:dList.php');
-    
-}
-
-
-
-
+include '../../controller/PlanController.php';
+$PlanC = new PlanController();
+$listPlan = $PlanC->ActivitePlan();
+include '../../controller/ActiviteController.php';
+$ActiviteC = new ActiviteController();
+$listActivite = $ActiviteC->listActivite();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +16,7 @@ if (
         <meta name="description" content="">
         <meta name="author" content="">
     
-        title>Add  Date - Dashboard</jour>
+        <title> Plan List - Dashboard</title>
     
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -75,14 +47,11 @@ if (
     
                 <!-- Nav Item - Dashboard -->
                 
-    
                 <li class="nav-item active">
-                    <a class="nav-link" href="dList.php">
+                    <a class="nav-link" href="addPlan.php">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span> Date List</span></a>
+                        <span>Add Plan</span></a>
                 </li>
-    
-    
             </ul>
             <!-- End of Sidebar -->
     
@@ -112,7 +81,7 @@ if (
     
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Add a  Date</h1>
+                            <h1 class="h3 mb-0 text-gray-800"> Plan List</h1>
                                   </div>
     
                         <!-- Content Row -->
@@ -123,33 +92,43 @@ if (
                                 <div class="card border-left-primary shadow h-100 py-2">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
-                                            
-                                            <form id="addDateForm" action="" method="POST">
-                                                <label for="jour">Jour:</label><br>
-                                                <input class="form-control form-control-user" type="text" id="jour" name="jour" >
-                                                <span id="jour_error"></span><br>
-                                             
+                                        <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                     
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Methode</th>
+                                                        <th>Titre</th>
+                                                        <th>Date du plan</th>
+                                                        <th>Message</th>
+                                                        <th colspan="2">Actions</th>
+                                                    </tr>
+                                              
+                                                <?php
+                                            foreach ($listPlan as $p) {
+                                            ?> <tr>
+                                                <td><?php echo $p['id']; ?></td>
+                                                <td><?php echo $p['methode']; ?></td>
+                                                    <td><?php echo $p['titre']; ?></td>
+                                                    <td><?php echo $p['datep']; ?></td>
+                                                    <td><?php echo $p['messagep']; ?></td>
+                                                    <td>
+                                                        <form method="POST" action="updatePlan.php">
+                                                            <input type="submit" name="update" value="Update">
+                                                            <input type="hidden" value=<?PHP echo $p['id']; ?> name="id">
+                                                            <input type="hidden" value=<?PHP echo $p['id_activite']; ?> name="id_activite">
+                                                        </form>
+                                                    </td>
+                                                    <td>
+                                                        <a href="deletePlan.php?id=<?php echo $p['id']; ?>">Delete</a>
+                                                    </td>
+                                                    </tr>
+                                            <?php
+                                            }
+                                            ?>
+                                        </table>
+
                                         
-                                                <label for="mois">Mois:</label><br>
-                                                <input class="form-control form-control-user" type="text" id="mois" name="mois" >
-                                                <span id="mois_error"></span><br>
-                                        
-                                                <label for="annee">Annee:</label><br>
-                                                <input class="form-control form-control-user" type="text" id="annee" name="annee" >
-                                                <span id="annee_error"></span><br>
-                                        
-                                                
-                                           <br>
-                                        
-                                                <button type="submit" 
-                                                class="btn btn-primary btn-user btn-block" 
-                                                onClick="validerFormulaire()"
-                                                >Add Date</button> 
-                                                <!-- <button type="submit" 
-                                                class="btn btn-primary btn-user btn-block" 
-                                                
-                                                >Add Date</button> -->
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +161,7 @@ if (
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
-        <script src="js/addDate.js"></script>
+        <script src="js/addPlan.js"></script>
     
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>

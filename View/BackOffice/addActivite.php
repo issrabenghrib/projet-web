@@ -9,7 +9,7 @@ $a= null;
 
 
 if (
-    isset($_POST["methode"])  && $_POST["quantite"] && $_POST["realisation"]
+    isset($_POST["methode"]  , $_POST["quantite"] , $_POST["realisation"])
 ) 
 {
 
@@ -141,12 +141,14 @@ if (
                                         
                                             
 
-                                                <div class="form-group">
-                                                    <div class="custom-control custom-checkbox small">
-                                                        <input type="checkbox" class="custom-control-input" id="realisation" name="realisation">
-                                                        <label class="custom-control-label" for="realisation">Realisation
-                                                        </label>
-                                                </div>
+                                                <form id="addactiviteForm" action="" method="POST">
+                                                <label for="realisation">Realisation:</label><br>
+                                                <select class="form-control form-control-user" id="realisation" name="realisation" >
+                                                    <option value="realise">Réalisé</option>
+                                                    <option value="encours">En Cours de realisation</option>
+                                                    <option value="non">N'est pas réalisé</option>
+                                                    
+                                                </select>
 
                                         
                                                 
