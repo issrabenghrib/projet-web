@@ -1,5 +1,8 @@
-<?php include '../../Controller/OuvrierController.php';
-$OuvrierC = new OuvrierController(); $list = $OuvrierC->listOuvrier(); ?>    
+<?php 
+include '../../Controller/OuvrierController.php';
+$OuvrierC = new OuvrierController(); 
+$list = $OuvrierC->TravailOuvrier();
+?>   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,9 +75,9 @@ $OuvrierC = new OuvrierController(); $list = $OuvrierC->listOuvrier(); ?>
                      <div class="card">
                         <img src="farmer.png" class="card-img-top" alt="Ouvrier Image">
                         <div class="card-body">
-                           <h5 class="card-title"><?php echo $o['nom'] ?> <?php echo $o['prenom'] ?></h5>
+                           <h5 class="card-title"><?php echo $o['nom']; ?> <?php echo $o['prenom']; ?> </h5>
                            <h6 class="card-subtitle mb-2 text-muted">Ouvrier Employé</h6>
-                           <p class="card-text">La place de la deuxième entité hhh</p>
+                           <p class="card-text"><?php echo $o['typetravail']; ?></p>
                            <!-- Add action buttons here -->
                            <a href="#" class="btn btn-primary">Details</a>
                         </div>

@@ -143,7 +143,7 @@ if (
                                             <input class="form-control form-control-user" type="text" id="id" name="id" readonly value="<?php echo $_POST['id'] ?>">
                                                 <label for="nom">Nom:</label><br>
                                                 <input class="form-control form-control-user" type="text" id="nom" name="nom" value="<?php echo $o['nom'] ?>" >
-                                                <span id="nom_error"></span><br>
+                                                <span id="nom_error"></span><br>x
                                              
                                         
                                                 <label for="prenom">Prenom:</label><br>
@@ -156,7 +156,6 @@ if (
                                                 
                                                 <label for="typetravail">Type de Travail:</label><br>
                                                 <select class="form-control form-control-user" name="typetravail">
-                                                    <option value="typetravail"><?php echo $t["typetravail"]; ?></option>
                                                 <?php foreach($listTravail as $t){
                                                 ?>
                                                 <option value="<?php echo $t["id"]; ?>"><?php echo $t["typetravail"]; ?></option>
@@ -169,7 +168,7 @@ if (
                                                 <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 onClick="validerFormulaire()"
-                                                >Add Ouvrier</button> 
+                                                >Update Ouvrier</button> 
                                                 <!-- <button type="submit" 
                                                 class="btn btn-primary btn-user btn-block" 
                                                 

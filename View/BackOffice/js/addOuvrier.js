@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function() {
         var ageErrorValue = ageelement.value.trim();
         var pattern = /^\d+$/;  // Only numbers allowed
 
-        if (!pattern.test(ageErrorValue) || ageErrorValue < 0 || ageErrorValue > 120) {
-            ageErrorElement.innerHTML = "L'âge doit être un nombre entre 0 et 120.";
+        if (!pattern.test(ageErrorValue) || ageErrorValue < 18 || ageErrorValue > 70) {
+            ageErrorElement.innerHTML = "L'âge doit être un nombre entre 18 et 70.";
             ageErrorElement.style.color = "red";
             return false; // Validation failed
         } else {
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener("submit", validateForm);
 
     // Validate each field as the user types
-    nomelement.addEventListener("keydown", validateNom);
-    prenomelement.addEventListener("keydown", validatePrenom);
-    ageelement.addEventListener("keydown", validateAge);
+    nomelement.addEventListener("keyup", validateNom);
+    prenomelement.addEventListener("keyup", validatePrenom);
+    ageelement.addEventListener("keyup", validateAge);
 
 });

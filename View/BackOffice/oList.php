@@ -6,6 +6,7 @@ $listOuvrier = $OuvrierC->TravailOuvrier();
 include '../../controller/TravailController.php';
 $TravailC = new TravailController();
 $listTravail = $TravailC->listTravail();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,6 +83,8 @@ $listTravail = $TravailC->listTravail();
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
                                     <div class="table-responsive">
+                                        <input type="text" id="search1" placeholder="Rechercher">
+                                        <button onclick="sortTable1()">Sort by Age</button>
                                         <table class="table table-bordered">
                                             <tr>
                                                 <th>ID</th>
@@ -90,7 +93,9 @@ $listTravail = $TravailC->listTravail();
                                                 <th>Prenom</th>
                                                 <th>Age</th>
                                                 <th colspan="2">Actions</th>
+                                            
                                             </tr>
+                                            <tbody id="tbody1">
                                             <?php foreach ($listOuvrier as $o) { ?>
                                                 <tr>
                                                     <td><?php echo $o['id'] ?></td>
@@ -110,12 +115,14 @@ $listTravail = $TravailC->listTravail();
                                                     </td>
                                                 </tr>
                                             <?php } ?>
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <button id="downloadouvrierExcel">Download Excel</button>
                 </div>
 
                 <!-- Page Heading -->
@@ -131,6 +138,8 @@ $listTravail = $TravailC->listTravail();
                                 <div class="row no-gutters align-items-center">
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
+                                        <input type="text" id="search2" placeholder="Rechercher">
+                                        <button onclick="sortTable2()">Sort by typetravail</button>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>TypeTravail</th>
@@ -138,6 +147,7 @@ $listTravail = $TravailC->listTravail();
                                                 <th>Unite</th>
                                                 <th colspan="2">Actions</th>
                                             </tr>
+                                            <tbody id="tbody2">
                                             <?php foreach ($listTravail as $t) { ?>
                                                 <tr>
                                                     <td><?php echo $t['id'] ?></td>
@@ -155,6 +165,9 @@ $listTravail = $TravailC->listTravail();
                                                     </td>
                                                 </tr>
                                             <?php } ?>
+                                            </tbody>
+                                            
+                                            
                                         </table>
                                     </div>
                                 </div>
@@ -162,6 +175,7 @@ $listTravail = $TravailC->listTravail();
                         </div>
                     </div>
                 </div>
+                <button id="downloadtravailExcel">Download Excel</button>
 
             </div>
             <!-- End of Page Content -->
@@ -190,6 +204,7 @@ $listTravail = $TravailC->listTravail();
     <i class="fas fa-angle-up"></i>
 </a>
 
+
 <!-- Scripts -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -198,6 +213,59 @@ $listTravail = $TravailC->listTravail();
 <script src="vendor/chart.js/Chart.min.js"></script>
 <script src="js/demo/chart-area-demo.js"></script>
 <script src="js/demo/chart-pie-demo.js"></script>
+<script src="js/metier.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+<script>
+// Export Ouvrier List to Excel
+function exportTableToExcelOuvrier() {
+    let table = document.querySelector('#tbody1');
+    let rows = Array.from(table.rows);
+    let workbook = XLSX.utils.book_new();
+
+    let data = rows.map(row => {
+        return Array.from(row.cells).map(cell => cell.innerText.trim());
+    });
+
+    let worksheet = XLSX.utils.aoa_to_sheet([['ID', 'Travail Effectué', 'Nom', 'Prenom', 'Age'], ...data]);
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Ouvrier List");
+
+    XLSX.writeFile(workbook, "Ouvrier_List.xlsx");
+}
+
+// Export Travail List to Excel
+function exportTableToExcelTravail() {
+    let table = document.querySelector('#tbody2');
+    let rows = Array.from(table.rows);
+    let workbook = XLSX.utils.book_new();
+
+    let data = rows.map(row => {
+        return Array.from(row.cells).map(cell => cell.innerText.trim());
+    });
+
+    let worksheet = XLSX.utils.aoa_to_sheet([['ID', 'Type de Travail', 'Duree', 'Unite'], ...data]);
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Travail List");
+
+    XLSX.writeFile(workbook, "Travail_List.xlsx");
+}
+
+// Event Listeners
+document.getElementById('downloadouvrierExcel').addEventListener('click', exportTableToExcelOuvrier);
+document.getElementById('downloadtravailExcel').addEventListener('click', exportTableToExcelTravail);
+</script>
+
+<!-- Add XLSX Library -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.0/dist/xlsx.full.min.js"></script>
+<script src="js/metier.js"></script>
+
 
 </body>
 </html>
