@@ -6,7 +6,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <!-- Favicons -->
   <link href="img/favicon.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -34,12 +34,6 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
-
-  
-    <!-- ... autres liens ... -->
-    <link href="css/weather.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 </head>
 
 <body id="body">
@@ -107,7 +101,7 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#body" class="scrollto">farm<span>future</span></a></h1>
+        <h1><a href="#body" class="scrollto">Reve<span>al</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#body"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
@@ -123,134 +117,253 @@
             <ul>
               <li><a href="#">Check my fields</a></li>
               <li><a href="#">Alerts</a></li>
-              <li><a href="#">Recevoir alerte</a></li>
+              <li><a href="#">Technical Support</a></li>
             </ul>
           </li>
-          <li><a href="#contact">Recevoir alerte</a></li>
+          <li><a href="#contact">Support technique</a></li>
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
 
-  <!--==========================
-    Intro Section
-  ============================-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
     <!--==========================
       Contact Section
     ============================-->
     <section id="contact" class="wow fadeInUp">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="weather-title">
-                    <i class="fas fa-cloud-sun"></i>
-                    Prévisions Météo
-                </h2>
-                <p class="weather-subtitle">Explorez les conditions météorologiques pour la date de votre choix</p>
-            </div>
-    
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="weather-card">
-                        <div class="weather-card-header">
-                            <div class="date-selector">
-                                <div class="date-input-group">
-                                    <label for="weatherDate">Choisissez une date</label>
-                                    <div class="date-input-wrapper">
-                                        <i class="far fa-calendar-alt"></i>
-                                        <input 
-                                            type="date" 
-                                            id="weatherDate" 
-                                            name="weatherDate"
-                                            required
-                                        >
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="weather-date">
-                                <i class="far fa-calendar-alt"></i>
-                                Prévisions disponibles
-                            </span>
-                        </div>
-                        
-                        <form action="" method="post" class="weather-form">
-                            <div class="weather-options">
-                                <div class="weather-option">
-                                    <input type="checkbox" id="temperature" name="weather_options">
-                                    <label for="temperature">
-                                        <div class="option-icon">
-                                            <i class="fas fa-thermometer-half"></i>
-                                        </div>
-                                        <div class="option-content">
-                                            <span class="option-title">Température</span>
-                                            <span class="option-desc">Prévisions de température</span>
-                                        </div>
-                                    </label>
-                                </div>
-                                
-                                <div class="weather-option">
-                                    <input type="checkbox" id="humidity" name="weather_options">
-                                    <label for="humidity">
-                                        <div class="option-icon">
-                                            <i class="fas fa-tint"></i>
-                                        </div>
-                                        <div class="option-content">
-                                            <span class="option-title">Humidité</span>
-                                            <span class="option-desc">Niveau d'humidité dans l'air</span>
-                                        </div>
-                                    </label>
-                                </div>
-                                
-                                <div class="weather-option">
-                                    <input type="checkbox" id="rain" name="weather_options">
-                                    <label for="rain">
-                                        <div class="option-icon">
-                                            <i class="fas fa-cloud-rain"></i>
-                                        </div>
-                                        <div class="option-content">
-                                            <span class="option-title">Précipitations</span>
-                                            <span class="option-desc">Probabilité de pluie</span>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-    
-                            <button type="submit" class="weather-button">
-                                <span>Afficher les prévisions</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </button>
-                        </form>
-    
-                        <div id="weather-results" class="weather-results">
-                            <!-- Results will be displayed here -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <!-- Weather Details Selection -->
+        <div class="form-group stylish-form">
+          <label for="weather-details">Afficher les détails de la météo :</label>
+          <select id="weather-details" class="form-control stylish-select">
+            <option value="">Sélectionner</option>
+            <option value="temperature">Température</option>
+            <option value="humidite">Humidité</option>
+            <option value="pluie">Pourcentage de pluie</option>
+          </select>
         </div>
-    </section><!-- #contact --><!-- #contact -->
+    
+        <!-- Date Selection -->
+        <div class="form-group stylish-form">
+          <label for="date">Choisir la date :</label>
+          <input type="date" id="date" class="form-control stylish-input">
+        </div>
+    
+        <!-- Confirmation Button -->
+        <div class="form-group stylish-form">
+          <button type="button" class="btn stylish-button" onclick="fetchWeatherData()">Confirmer</button>
+        </div>
+      </div>
+    
+      <div id="google-map" data-latitude="40.713732" data-longitude="-74.0092704"></div>
+    
+      <div class="container">
+        <!-- Additional content can go here -->
+      </div>
+    </section><!-- #contact -->
+    
+    <style>
+      .stylish-form {
+        margin-bottom: 20px;
+        padding: 20px;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+    
+      .stylish-form:hover {
+        transform: translateY(-5px);
+      }
+    
+      .stylish-form label {
+        font-weight: bold;
+        color: #555;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 10px;
+        display: block;
+      }
+    
+      .stylish-select, .stylish-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        font-family: 'Open Sans', sans-serif;
+      }
+    
+      .stylish-select:focus, .stylish-input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+      }
+    
+      .stylish-button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+    
+      .stylish-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+      }
+
+
+      /* CSS for styling alerts */
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+.close-alert {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-alert:hover {
+  color: #000;
+}
+
+
+    </style>
+
+
+<script>
+  function fetchWeatherData() {
+    const weatherDetails = document.getElementById('weather-details').value;
+    const dateInput = document.getElementById('date').value;
+    const currentDate = new Date();
+    const selectedDate = new Date(dateInput);
+    const maxDate = new Date();
+    maxDate.setDate(currentDate.getDate() + 15);
+
+    if (!weatherDetails) {
+      alert('Veuillez sélectionner un détail de la météo.');
+      return;
+    }
+
+    if (!dateInput) {
+      alert('Veuillez choisir une date.');
+      return;
+    }
+
+    if (selectedDate < currentDate || selectedDate > maxDate) {
+      alert('La date doit être dans les 15 prochains jours.');
+      return;
+    }
+
+    // AJAX request to fetch weather data
+    fetch(`getWeather.php?date=${dateInput}&detail=${weatherDetails}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert(`Le ${weatherDetails} pour le ${dateInput} est: ${data[weatherDetails]}`);
+        }
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        alert('Erreur lors de la récupération des données météo.');
+      });
+  }
+  
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </main>
 
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>Farm to future</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Reveal
-        -->
-        <a href="https://bootstrapmade.com/">Free Bootstrap Templates</a> by BootstrapMade
-      </div>
-    </div>
-  </footer><!-- #footer -->
+  
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
@@ -271,16 +384,5 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
-  <section id="contact" class="wow fadeInUp"></section>
-    <!-- Votre code HTML existant -->
-     
-</section>
-
-<!-- Ajoutez ces lignes à la fin, juste avant </body> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="js/weather.js"></script>
-
-</body>
-</html>
 </body>
 </html>
