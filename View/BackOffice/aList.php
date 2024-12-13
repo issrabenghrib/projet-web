@@ -6,7 +6,6 @@ $list = $ActiviteC->listActivite();
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -97,7 +96,7 @@ $list = $ActiviteC->listActivite();
                                         <form method="POST" action="deleteRealisedPlans.php">
                                         <button type="submit" class="btn btn-danger">Delete All Realised Plans</button>
                                         <table class="table table-bordered">
-                                     
+                                        
                                                     <tr>
                                                         <th>ID</th>
                                                         <th>Methode</th>
@@ -105,6 +104,7 @@ $list = $ActiviteC->listActivite();
                                                         <th>Realisation</th>
                                                         <th colspan="2">Actions</th>
                                                     </tr>
+                                                    <tbody id="tbody">
                                                 <?php
         foreach ($list as $t) {
         ?> <tr>
@@ -125,7 +125,7 @@ $list = $ActiviteC->listActivite();
         <?php
     }
     ?>
-    
+    </tbody>
                                         </table>
 
                                         
@@ -155,14 +155,76 @@ $list = $ActiviteC->listActivite();
     
             </div>
          
-    
+            <button id="downloadactivitePDF">Download PDF</button>
         </div>
        
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
         <script src="js/addActivite.js"></script>
-    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+
+<script>
+document.getElementById('downloadactivitePDF').addEventListener('click', function () {
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF();
+    pdf.setProperties({
+        title: 'Activite',
+        subject: 'List of Activite Entries',
+        author: 'Farm to Future Dashboard',
+        keywords: 'Activite, Dashboard',
+        creator: 'Farm to Future Team',
+    });
+
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(26);
+    pdf.setTextColor(52, 152, 219); // Soft blue color for the title
+    pdf.text("Activite List", 20, 20);
+
+    pdf.setFontSize(14);
+    pdf.setTextColor(44, 62, 80); // Dark gray for text
+    pdf.text("Une sommaire des travaux existants.", 20, 30);
+
+    // Extract table data
+    const rows = [];
+    const tableRows = document.querySelectorAll('#tbody tr');
+    const columns = ["ID", "Methode", "Quantite", "Realisation"];
+
+    tableRows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const rowData = [];
+        // Only pick the first four columns, skip actions
+        cells.forEach((cell, index) => {
+            if (index < 4) rowData.push(cell.innerText.trim());
+        });
+        rows.push(rowData);
+    });
+
+    // Add table to PDF
+    pdf.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 40,
+        theme: 'grid',
+        styles: {
+            font: 'helvetica',
+            fontSize: 12,
+            halign: 'center',
+        },
+        headStyles: {
+            fillColor: [52, 152, 219],
+            textColor: [255, 255, 255],
+        },
+    });
+
+    pdf.save("Activite_List.pdf");
+});
+
+</script>
+
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -179,7 +241,6 @@ $list = $ActiviteC->listActivite();
         <!-- Page level custom scripts -->
         <script src="js/demo/chart-area-demo.js"></script>
         <script src="js/demo/chart-pie-demo.js"></script>
-    
     </body>
 
 </html>

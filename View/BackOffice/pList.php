@@ -103,7 +103,7 @@ $listActivite = $ActiviteC->listActivite();
                                                         <th>Message</th>
                                                         <th colspan="2">Actions</th>
                                                     </tr>
-                                              
+                                              <tbody id="tbody">
                                                 <?php
                                             foreach ($listPlan as $p) {
                                             ?> <tr>
@@ -126,6 +126,7 @@ $listActivite = $ActiviteC->listActivite();
                                             <?php
                                             }
                                             ?>
+                                            </tbody>
                                         </table>
 
                                         
@@ -136,12 +137,8 @@ $listActivite = $ActiviteC->listActivite();
     
                           
                         </div>
-    
-                      
-    
+                        <button id="downloadplanPDF">Download PDF</button>
                     </div>
-                   
-    
                 </div>
                
                 <footer class="sticky-footer bg-white">
@@ -162,7 +159,67 @@ $listActivite = $ActiviteC->listActivite();
             <i class="fas fa-angle-up"></i>
         </a>
         <script src="js/addPlan.js"></script>
-    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+        <script>
+document.getElementById('downloadplanPDF').addEventListener('click', function () {
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF();
+    pdf.setProperties({
+        title: 'Plan',
+        subject: 'List of Plan Entries',
+        author: 'Farm to Future Dashboard',
+        keywords: 'Plan, Dashboard',
+        creator: 'Farm to Future Team',
+    });
+
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(26);
+    pdf.setTextColor(52, 152, 219); // Soft blue color for the title
+    pdf.text("Plan List", 20, 20);
+
+    pdf.setFontSize(14);
+    pdf.setTextColor(44, 62, 80); // Dark gray for text
+    pdf.text("Une sommaire des travaux existants.", 20, 30);
+
+    // Extract table data
+    const rows = [];
+    const tableRows = document.querySelectorAll('#tbody tr');
+    const columns = ["ID", "Methode", "Titre", "Date", "Message"];
+
+    tableRows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        const rowData = [];
+        // Only pick the first four columns, skip actions
+        cells.forEach((cell, index) => {
+            if (index < 5) rowData.push(cell.innerText.trim());
+        });
+        rows.push(rowData);
+    });
+
+    // Add table to PDF
+    pdf.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 40,
+        theme: 'grid',
+        styles: {
+            font: 'helvetica',
+            fontSize: 12,
+            halign: 'center',
+        },
+        headStyles: {
+            fillColor: [52, 152, 219],
+            textColor: [255, 255, 255],
+        },
+    });
+
+    pdf.save("Plan_List.pdf");
+});
+
+</script>
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
